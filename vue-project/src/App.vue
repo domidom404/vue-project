@@ -7,14 +7,38 @@ export default{
     //registra os componentes que serão mostrados nesse template, no caso sendo HelloWorld e agr nosso cabeçalho TheHeader
     HelloWorld,
     TheHeader
+  },
+
+  data(){
+    return {
+      //tudo delcarado aqui sera um objeto reativo, ou seja, se mudar aqui, muda na tela
+      showHeader: true,
+      firstname: 'Jon',
+      lastname: 'Snow',
+      showName: false,
+      acecessLevel: 'admin'
+    }
   }
 }
 </script>
 
 <template>
-  <!--aqui o arquivo TheHeader foi inserido na "parte html" do código, foi usado "The" para distinguir do header que é uma tag html -->
-  <TheHeader />
+  <!-- v- são diretivas: dão "direções"/instruções pro cod html-->
+  <!-- diferença entre v-if(+ pesado) e v-show(+eficiente) é que em v-show o objeto permanece no DOM, o v-if remove o componente. Semelhança é que ambos tem função de 'mostrar' e 'esconder' -->
+  <TheHeader v-if="showHeader"/>
+  
   <header>
+
+  <div v-show="showName">
+    Nome: {{ firstname }} <br> <!-- chave dupla é interpolação, usado p mostrar valores de variáveis-->
+    Sobrenome: {{ lastname }}
+  </div>
+
+  <div v-if="acecessLevel === 'admin'">Usuário Admin</div>
+  <div v-else-if="acecessLevel === 'marketing'">Usuário Marketing</div>
+  <div v-else="">Usuário normal</div>
+  <!--recomendado o uso de if pois usando o v-show daria pra ver o id de outros usuarios ao inspecionar o codigo-->
+  
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
