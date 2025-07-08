@@ -1,22 +1,21 @@
 
 <template>
-    <!-- template é a parte 'HTML' do nosso código -->
-    <header class="header">
-        Header
+    <!-- 'template' é a parte 'HTML' do nosso código -->
+    <header class="header"> <!--classe pra poder editar no css -->
+        Header <!-- parte que aparece na tela -->
     </header>
 </template>
 
 <script>
-//script é a parte em javascript do nosso código, professor disse que iremos trabalhar nas prox aulas
+//'script' é a parte em javascript do nosso código, professor disse que iremos trabalhar nas prox aulas
      export default{
 
      }
 </script>
 
-<style scoped> /* garante q o estilo n vaze p outros componentes
-style é a parte em css do nosso código
-o código é single file component, o que singifica que podemos escrever em html, javascript e css num msm aquivo
-parece que tem que usar um tipo de comentario diferente em cada uma das partes msm assim */
+<style scoped> /*style é a parte em css do nosso código, 'scoped' garante q o estilo n vaze p outros componentes*/
+/*o código é single file component, o que singifica que podemos escrever em html, javascript e css num msm aquivo
+tendo que usar um tipo de comentario diferente em cada uma das partes tb*/
 .header { 
   background: #000;
   color: #fff;

@@ -1,9 +1,8 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import TheHeader from './components/TheHeader.vue'//importa o componente TheHeader pro js, que representa o cabeçalho do codigo
-
+import TheHeader from './components/TheHeader.vue'//importa o componente TheHeader pro js
 export default{
-  name: 'App', //nome do componente atual, App.vue
+  name: 'App', //nome do componente atual, 'App.vue'
   components: {
     //registra os componentes que serão mostrados nesse template, no caso sendo HelloWorld e agr nosso cabeçalho TheHeader
     HelloWorld,
@@ -13,7 +12,7 @@ export default{
 </script>
 
 <template>
-  <!--aqui o arquivo TheHeader foi inserido na "parte html" do código, foi usado "The" pq "header" é o nome de uma tag no html -->
+  <!--aqui o arquivo TheHeader foi inserido na "parte html" do código, foi usado "The" para distinguir do header que é uma tag html -->
   <TheHeader />
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
