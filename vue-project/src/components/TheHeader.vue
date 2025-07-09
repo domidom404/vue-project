@@ -1,18 +1,19 @@
 <template>
 <div>
- <!--obj é o objeto do loop; v-bind serve pra obj ser lido como variavel, ele disse q explica melhor dps; index é para fazer listagem-->
+<!--v-bind instrui o atributo para que ele fique dinamico, sendo uma variavel com valor-->
   <div 
   v-for="(obj, index) in todos"  
   v-bind:key= "obj.id"
   class="todo-item"
   >
+  <!--Usar apenas ':' é suficiente pro codigo entender que vc ta usando v-bind e deixa o codigo mais limpo-->
+  <img 
+  v-if="obj.imgSrc"
+  :src="obj.imgSrc">
     {{ index }} - {{ obj.title }}
-    <!--key é um identificador unico do objeto q ajuda renderizar + rapido-->
     
   </div>
-
 </div>
-
 </template>
 
 <script>
@@ -25,13 +26,16 @@
     "userId": 1,
     "id": 1,
     "title": "delectus aut autem",
-    "completed": false
-  },
+    "completed": false,
+    "imgSrc":'https://placehold.co/150',
+  },//uma imagem p usuario; precisa usar aspas pra declarar variavel dentro de um objeto
+  //o site q ele usou 'placeholder.com' nao esta mais disponivel ent usei esse no lugar
   {
     "userId": 1,
     "id": 2,
     "title": "quis ut nam facilis et officia qui",
-    "completed": false
+    "completed": false,
+    "imgSrc":'https://placehold.co/150',
   },
   {
     "userId": 1,
@@ -58,7 +62,6 @@
 </script>
 
 <style>
-/*estilização basica do todo-item na tela*/
 .todo-item {
   background: #000;
   margin: 0 0 5px 0;
