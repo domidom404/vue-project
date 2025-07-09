@@ -1,36 +1,75 @@
-
 <template>
-    <!-- 'template' é a parte 'HTML' do nosso código -->
-    <header class="header"> <!--classe pra poder editar no css -->
-        Header <!-- parte que aparece na tela -->
-    </header>
+<div>
+ <!--obj é o objeto do loop; v-bind serve pra obj ser lido como variavel, ele disse q explica melhor dps; index é para fazer listagem-->
+  <div 
+  v-for="(obj, index) in todos"  
+  v-bind:key= "obj.id"
+  class="todo-item"
+  >
+    {{ index }} - {{ obj.title }}
+    <!--key é um identificador unico do objeto q ajuda renderizar + rapido-->
+    
+  </div>
+
+</div>
+
 </template>
 
 <script>
-//'script' é a parte em javascript do nosso código, professor disse que iremos trabalhar nas prox aulas
      export default{
-
+      name: 'App',
+      data() {
+        return {
+          todos: [ //foram pegos no site https://jsonplaceholder.typicode.com/todos?_limit=5
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "quis ut nam facilis et officia qui",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "fugiat veniam minus",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "et porro tempora",
+    "completed": true
+  },
+  {
+    "userId": 1,
+    "id": 5,
+    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+    "completed": false
+  }
+]
+        }
+      }
      }
 </script>
 
-<style scoped> /*style é a parte em css do nosso código, 'scoped' garante q o estilo n vaze p outros componentes*/
-/*o código é single file component, o que singifica que podemos escrever em html, javascript e css num msm aquivo
-tendo que usar um tipo de comentario diferente em cada uma das partes tb*/
-.header { 
+<style>
+/*estilização basica do todo-item na tela*/
+.todo-item {
   background: #000;
+  margin: 0 0 5px 0;
+  padding: 3px 6px;
   color: #fff;
-  /*adicionei outras propriedades no header pq n ficou certinho no topo e deixou a pagina toda bugada*/
-  padding: 10px;
-  font-size: 1.2rem;
-  text-align: center;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+}
+#app{
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin: 60px;
 }
 </style>
