@@ -1,118 +1,108 @@
 <template>
-  <div>
-  <!--como fazer o bind com class e style-->
-  <div>
+  <div> 
+    <div>
+      -one way data binding- <br>
+      -two way data binding- <br> <!--ou ligação bidirecional de dados-->
+      -v-model -> formularios- <!--comando utilizado pro two way bd-->
+    </div>
+<!-- o two way permite q o valor de campo de um formulario e a variavel do JS fiquem sempre sincronizados-->
+    <br><br>
 
-    <h1 :class="{'title': true, 'title-home': isHome}">
-      Curso Vue 3
-    </h1>
+    <div>
+      <label>Nome</label> <br>
+          <input 
+           v-model="name"
+           type="text"
+           >
+    {{ name }}
+<!-- se vc muda a variavel no input a variavel muda-->
+    </div>
 
-    <p :class="pClass">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum rem tempora quasi pariatur reprehenderit voluptatum, neque, laudantium harum deserunt reiciendis similique aliquam. Deleniti, quam quibusdam velit molestiae iure voluptas itaque.
-    </p>
+    <br><br>
 
-<!--pode usar qualquer atributo do css usando o style-->
-    <p :style="styleClass">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus cumque neque a voluptatum earum, voluptates facilis amet voluptas tempore! Nisi libero consequuntur ullam ab! Ex velit corporis maxime necessitatibus nostrum.
-    </p>
+    <div>
+      <!--estou misturando ingles e pt pq o prof tbm esta fazendo isso e disse que pe so pra exemplo, estou ciente de que nao devemos fzr isso em codigos serios-->
+      <!--seleciona uma opcçao na lista do formulario-->
+      <label>Sports</label> <br>
+      <select v-model="sports">
+      <option value="">Escolha</option>
 
+      <option value="futebol">Futebol</option>
+      <option value="skate">Skate</option>
+      <option value="tenis">Tenis</option>
+      </select> <br>
+      {{ sports }}
+    </div>
 
+    <br><br>
+
+    <div>
+      <label>NewsLetter</label> <br>
+      <input
+        v-model="newsletter"
+        type="radio"
+        value="Sim"
+        >Sim
+
+        <input 
+        v-model="newsletter"
+        type="radio"
+        value="Não"
+        >Não <br>
+        {{ newsletter }}
+    </div>
+
+    <br><br>
+
+    <div>
+      <!-- seleciona se aceita ou não o contrato-->
+      <label>Contrato</label> <br>
+      <input
+        v-model="contract"
+        type="checkbox"
+        >Aceita nossos termos?... <br>
+
+        {{ contract }}
+    </div>
+
+    <br><br>
+
+      <div>
+      <!--se vc muda a variavel no codigo, o input tb muda automaticamente -->
+      <label>Cores que você mais gosta</label> <br>
+      <input
+        v-model="colors"
+        type="checkbox"
+        value="Azul"
+        >Azul
+
+        <input 
+        v-model="colors"
+        type="checkbox"
+        value="Amarelo"
+        >Amarelo <br>
+        {{ colors }}
+    </div>
   </div>
-
-<div>
-  <div 
-  v-for="(obj, index) in todos"  
-  v-bind:key= "obj.id"
-  class="todo-item"
-  >
-  <img 
-  v-if="obj.imgSrc"
-  :src="obj.imgSrc">
-    {{ index }} - {{ obj.title }}
-    
-  </div>
-</div>
-</div><!--coloquei uma div extra pra emglobar as outras e ficar menos 'solto'-->
 </template>
 
 <script>
-     export default{
-      name: 'App',
-      data() {
-        return {
-          isHome: true,
-          classVar: 'title',
-          //se nao quiser escrever background-color pode escrever tirando o - e com a 2 palavra em maiusculo
-          styleClass: {'color': 'aqua', 'backgroundColor': 'black', 'font-size': '20px'},
-//prof havia colocado apenas 'pClass: {...}' e tava dando erro pq a variavel ainda nao estava acessivel a esse ponto
-//sendo uma função, ela é acessada no momento que o Vue renderiza o template
-          pClass(){
-            return ['text', {'text-home': this.isHome}];
-          },
-          todos: [ 
-  {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false,
-    "imgSrc":'https://placehold.co/150',
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false,
-    "imgSrc":'https://placehold.co/150',
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 5,
-    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    "completed": false
+export default {
+  name: 'App',
+  data() {
+    return {
+      name: 'Jon Snow',//primeira direção, a segunda é oq o usuario colocar no campo
+      sports:'futebol',
+      newsletter: '', //se colocasse 'sim' ou 'nao' aqui, o valor padrão seria esse, mas como deixei vazio, o valor padrão é vazio
+      contract: true,
+      colors: [],//captura opções no array, se nao fizer isso a checkbox vem marcada ambas as opções de uma vez
+    }
   }
-]
-        }
-      }
-     }
-     
+}
+
 </script>
 
 <style>
-.title{
-  font-size: 20px;
-  color: blue;
-}
-
-.title-home{
-  font-size: 40px;
-  color: green;
-}
-
-.text{
-  color: yellow;
-}
-
-.text-home{
-  color: seagreen;
-}
-.todo-item {
-  background: #000;
-  margin: 0 0 5px 0;
-  padding: 3px 6px;
-  color: #fff;
-}
 
 #app{
   font-family: Arial, Helvetica, sans-serif;
