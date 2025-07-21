@@ -1,32 +1,33 @@
 <template>
   <header class="header">
-    Header
+    <h1
+      v-if="$slots.title"
+      class="title">
+      <slot name="title"/>
+    </h1>
+    
+    <div>
+      <slot name="description" />
+    </div>
+
+    <div>
+      <slot></slot>
+    <!--permite que um conteudo externo seja inserido-->
+      <!--no caso o conteudo da tag <TheHeader> no arq app.vue sera inserido aqui-->
+    </div>
+        
+    
   </header>
 </template>
 
 <script>
-export default{
+ export default {
   mounted(){
-    window.addEventListener('resize', this.resize)
-  },
-  beforeUnmount(){
-    // Destruir as nossas libs
-    // Eventos
-    // Listeners
-  console.log('beforeUnmount');
-  window.removeEventListener('resize', this.resize)
-  },
-  unmonted(){
-    console.log('unmonted');
-  },
-
-  methods:{
-    resize($evt){
-      console.log($evt);
-    } 
+    console.log(this.$slots); 
   }
-  
-}
+
+ } 
+
 </script>
 
 <style>
