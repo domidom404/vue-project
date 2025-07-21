@@ -1,22 +1,18 @@
 <template>
  <div>
-  <TheHeader> 
-    <template v-slot:description>
-      <!-- 'v-slot' direciona conteudo para slots nomeados em componentes-->
-      <p>dadsda</p>
-    </template>
-
-    conteudo do header - menu...    
-  </TheHeader>
+  <div class="card">
+    Teste
+  </div>
+  <BaseCard />
  </div>
 </template>
 
 
 <script>
-import TheHeader from './components/TheHeader.vue';
+import BaseCard from '@/components/BaseCard.vue'; //@ é uma forma curta pra dizer q vc ta dentro do src
 export default {
   name: 'App',
-  components: {TheHeader},
+  components: { BaseCard },
   data() {
     return {
     }
