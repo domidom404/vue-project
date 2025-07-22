@@ -1,6 +1,15 @@
 <template>
+  
  <div>
-  <BaseAlert variant="danger" />
+  <BaseAlert 
+  v-if="showAlert"
+  :variant="variant" 
+  @close="onClose()"
+  >
+  <!--close e um evento personalizado que criamos pro componente, não é padrao do js-->
+    {{ text }}
+  </BaseAlert>
+
  </div>
 </template>
 
@@ -12,6 +21,9 @@ export default {
   components: { BaseAlert },
   data() {
     return {
+      showAlert: true,
+      variant: 'success',
+      text: 'Seu formulario foi enviado'
     }
   },
 
@@ -25,7 +37,12 @@ export default {
  unmounted(){},
  watch:{},
  computed:{},
- methods: {}
+ methods: {
+  onClose(){
+    this.showAlert = false
+    console.log('on close');
+  }
+ }
 }
 </script>
 

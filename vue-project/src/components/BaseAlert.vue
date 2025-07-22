@@ -1,29 +1,46 @@
 <template>
-    <!--o prefixo 'Base' na frente de Basecard e BaseAlert é pra padronizar arquivos de visualização-->
     <div :class="baseClass">
-        seu formulario foi enviado com sucesso
+        <slot />
+<!-- lembrando q v-on é o @-->
+    <button @click="onClick()">
+        X
+    </button>
+<!--botao pra fechar o alert-->
     </div>
+    
 </template>
 
 <script>
-//slot trabalha com o conteudo, props com o comportamento do componente
 export default{
-    props: ['variant', 'text'],
-    computed:{
-        //valor dele depende do valor de variant, logo tem q ser computed
+    props:{
+        variant:{
+            type: String,
+            default: ''
+        },
+    },
+    computed: {
         baseClass(){
-            return [
+            return[
                 'alert',
                 this.variant ? `alert-${this.variant}` : ''
+
             ]
         },
-
     },
+
+    methods:{
+        onClick(){
+            this.$emit('close')
+            console.log('clickou'); //é registrado close e clickou ao clicar no botao x no console
+        }
+    }
 }
 </script>
 
-<style scooped>
+<style scoped>
 .alert{
+    display: flex;
+    justify-content: space-between;
     padding: 5px;
     border-radius: 6px;
     color: gray;
@@ -39,4 +56,14 @@ export default{
     background: red;
     color: #fff;
 }
+
+/*
+
+<pai> ->props
+    <filho>
+        <neto></neto> emit-event
+    </filho>
+</pai>
+
+*/
 </style>
