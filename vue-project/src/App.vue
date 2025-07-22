@@ -1,18 +1,15 @@
 <template>
  <div>
-  <div class="card">
-    Teste
-  </div>
-  <BaseCard />
+  <BaseAlert variant="danger" />
  </div>
 </template>
 
 
 <script>
-import BaseCard from '@/components/BaseCard.vue'; //@ é uma forma curta pra dizer q vc ta dentro do src
+import BaseAlert from '@/components/BaseAlert.vue'; 
 export default {
   name: 'App',
-  components: { BaseCard },
+  components: { BaseAlert },
   data() {
     return {
     }
