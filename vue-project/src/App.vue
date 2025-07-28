@@ -1,29 +1,21 @@
 <template>
-  
- <div>
-  <BaseAlert 
-  v-if="showAlert"
-  :variant="variant" 
-  @close="onClose()"
-  >
-  <!--close e um evento personalizado que criamos pro componente, não é padrao do js-->
-    {{ text }}
-  </BaseAlert>
+  <nav>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink :to="rotaDinamica">Serviços</RouterLink> <!-- Link dinâmico para a rota 'servicos' usando o objeto 'rotaDinamica' -->
+    <router-link to="/about">About</router-link>
+  </nav>
 
- </div>
+  <!-- Renderiza o componente da rota atual -->
+  <RouterView></RouterView>
 </template>
 
 
 <script>
-import BaseAlert from '@/components/BaseAlert.vue'; 
+import { RouterLink, RouterView } from 'vue-router';
 export default {
-  name: 'App',
-  components: { BaseAlert },
   data() {
     return {
-      showAlert: true,
-      variant: 'success',
-      text: 'Seu formulario foi enviado'
+      rotaDinamica: { name: 'servicos'} // Objeto usado para navegação dinâmica para a rota 'servicos'
     }
   },
 
@@ -47,12 +39,20 @@ export default {
 </script>
 
 <style>
-
 #app{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #4e7092;
-  margin: 60px;
+  -moz-osx-font-smoothing:grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav{
+  padding: 30px;
+}
+
+nav a{
+  font-weight: bold;
+  color: #2c3e50;
 }
 </style>
