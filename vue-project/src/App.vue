@@ -1,7 +1,8 @@
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink :to="rotaDinamica">Serviços</RouterLink> <!-- Link dinâmico para a rota 'servicos' usando o objeto 'rotaDinamica' -->
+    <RouterLink :to="rotaDinamica">Serviços</RouterLink>
+    <RouterLink to="/usuarios/10">Usuario</RouterLink>  <!-- Link para a página de usuário com id 10 -->
     <router-link to="/about">About</router-link>
   </nav>
 
@@ -15,7 +16,7 @@ import { RouterLink, RouterView } from 'vue-router';
 export default {
   data() {
     return {
-      rotaDinamica: { name: 'servicos'} // Objeto usado para navegação dinâmica para a rota 'servicos'
+      rotaDinamica: { name: 'servicos'} 
     }
   },
 
@@ -43,8 +44,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing:grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #98b3cf;
 }
 
 nav{
@@ -53,6 +53,6 @@ nav{
 
 nav a{
   font-weight: bold;
-  color: #2c3e50;
+  color: #98b3cf;
 }
 </style>

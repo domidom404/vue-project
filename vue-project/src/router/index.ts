@@ -1,27 +1,30 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  // Define o tipo de histórico (hash mode)
-  history: createWebHashHistory(),
+  // Define o tipo de histórico (sem hash na URL -> mais profissional mas precisa ser configurado pra retornar ao index sempre)
+  history: createWebHistory(),
   routes: [
     {
-      // Rota para a página inicial
       path: '/',
       name: 'home',
       component: HomeView,
     },
     {
-      // Rota para a página "About"
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
     {
-      // Rota para a página "Serviços"
       path: '/servicos',
       name: 'servicos',
       component: () => import('../views/ServicesView.vue')
+    },
+    {
+      //rota dinamica pra usuario
+      path:'/usuarios/:id',
+      name: 'usuarios-editar',
+      component: () => import('../views/UserEditView.vue')
     }
   ],
   
