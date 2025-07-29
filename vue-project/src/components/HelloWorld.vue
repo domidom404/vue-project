@@ -6,7 +6,6 @@ export default{
   },
   created(){
     console.log('hello world', this.$store.state.user);
-    //exibe no console o user armazenado no vueX
   }
 }
 </script>
@@ -15,25 +14,24 @@ export default{
 
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <!--exibe informações do user vindas do VueX store-->
-    {{ $store.state.user.first_name }}
-    {{ $store.state.user.last_name }}
-    {{ $store.state.user.email }}
+   <p> {{ $store.state.user.first_name }}
+    {{ $store.state.user.last_name }} </p> 
+    <p>{{ $store.state.user.email }}</p>
 
 
     <h3>
       You’ve successfully created a project with
       <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. 
     </h3>
   </div>
 </template>
 
 <style>
-
+/* fiz algumas alterações no css pq tava muito bagunçado e desconfigurado  */
 h1 {
   font-weight: 500;
-  font-size: 2.6rem;
+  font-size: 1.5rem;
 }
 
 h3 {
@@ -42,7 +40,13 @@ h3 {
 
 .greetings h1,
 .greetings h3 {
+  font-size: 2rem;
+  margin: 1rem;
   text-align: center;
+}
+
+p{
+  font-size: 1.5rem;
 }
 
 @media (min-width: 1024px) {

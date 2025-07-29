@@ -12,7 +12,12 @@ export default createStore({
   },
   getters: {
   },
-  mutations: {
+  mutations: { //mudar/ atualizar os dados do nosso storage, composto por funções que tem state como 1 parametro
+    storeUser(state, data){
+      state.user = data;
+      console.log('storeuser', data);
+    }
+
   },
   actions: {
   },
