@@ -1,41 +1,23 @@
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink :to="rotaDinamica">Serviços</RouterLink>
-    <RouterLink to="/usuarios/10">Usuario</RouterLink>  <!-- Link para a página de usuário com id 10 -->
-    <router-link to="/about">About</router-link>
-  </nav>
-
-  <!-- Renderiza o componente da rota atual -->
-  <RouterView></RouterView>
+  <HelloWorld 
+  user=""
+  msg="Welcome to Your Vue.js App"/>
 </template>
 
 
 <script>
-import { RouterLink, RouterView } from 'vue-router';
+import HelloWorld from './components/HelloWorld.vue';
+
 export default {
-  data() {
-    return {
-      rotaDinamica: { name: 'servicos'} 
+  name: 'App',
+  components:{
+    HelloWorld
+  },
+  data(){
+    return{
     }
   },
-
- beforeUpdate(){},
- updated(){},
- beforeCreate(){},
- created(){},
- beforeMount(){},
- mounted(){},
- beforeMount(){},
- unmounted(){},
- watch:{},
- computed:{},
- methods: {
-  onClose(){
-    this.showAlert = false
-    console.log('on close');
-  }
- }
+  
 }
 </script>
 
@@ -48,11 +30,14 @@ export default {
 }
 
 nav{
-  padding: 30px;
+  padding: 1rem;
 }
 
 nav a{
   font-weight: bold;
   color: #98b3cf;
 }
+
+/* VueX -> biblioteca oficial do vuejs pra gerenciamento de estados,
+como um banco de dados do frontend */
 </style>
