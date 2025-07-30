@@ -1,5 +1,7 @@
 <template>
-    <AppProducts />
+
+{{  $store.getters.total }}
+<AppProducts />
     <br><br>
         
   <!-- <pre>: tag usada pra exibit codigo fonte ou txt c formatação original-->

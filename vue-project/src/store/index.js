@@ -34,18 +34,26 @@ export default createStore({
     },
 
     addProduct(state, data) {
-      state.cart.push(data) //adicionar mais um item no array
+      state.cart.push(data) 
     },
 
     removeProduct(state, id) {
       const idx = state.cart.findIndex ( o => o.id === id)
-      state.cart.splice(idx, 1); //remove um item do index
-
+      state.cart.splice(idx, 1); 
     },
     inCart(product){
       return this.cart.some(item => item.id === product.id)
     }
   },
+  getters:{ //funciona como computed 
+    //dependencia
+    //retorna um valor e recomputa
+    //reduce -> acumulador de valores
+    total(state) {
+      return state.cart.reduce((total, item) => total += item.price, 0)
+    },
+  },
   actions: {
   },
+  
 })
