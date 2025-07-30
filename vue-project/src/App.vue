@@ -1,24 +1,28 @@
 <template>
- <div id="app">
-  <div class="container">
+    <AppProducts />
+    <br><br>
+        
+  <!-- <pre>: tag usada pra exibit codigo fonte ou txt c formatação original-->
+    <pre>
+      {{ $store.state.cart }}
+    </pre>
+
+    <br><br>
      <button class="bttm" @click="updateUser()">
     Atualizar perfil
   </button>
-  <HelloWorld 
-  user=""
-  msg="Welcome to Your Vue.js App"/>
-  </div>
- </div>
+
 </template>
 
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-
+import AppProducts from '@/components/Products/AppProducts.vue';
+//importa componentes de produtos
 export default {
   name: 'App',
+  //declara componente filho
   components:{
-    HelloWorld
+    AppProducts,
   },
   data(){
     return{
@@ -27,13 +31,12 @@ export default {
 
   methods:{
     updateUser(){
-      //commit é oq dispara o mutaded
     const newUser = {
       first_name:'percy',
       last_name: 'jackson',
       email: 'percy@jack.com'
-    }//nova constante objeto
-    this.$store.commit('storeUser', newUser) //segundo parametro
+    }
+    this.$store.commit('storeUser', newUser)
     }
 
   },
@@ -47,36 +50,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #cdcdcd;
-  background-color: #121212;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 60px;
 }
 
-.container {
-  background-color: #1e1e1e;
-  padding: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  width: 90%;
-  max-width: 600px;
-}
-
-.bttm {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 20px;
- /* o botao estava enorme tive q consertar manualmente tb */ 
-}
-
-nav {
-  padding: 1rem;
-}
-
-nav a {
-  font-weight: bold;
-  color: #cdcdcd;
-}
 </style>
