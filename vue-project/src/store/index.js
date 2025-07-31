@@ -26,8 +26,7 @@ export default createStore({
       ],
       cart:[]
   },
-  getters: {
-  },
+
   mutations: { 
     storeUser(state, data){
       state.user = data;
@@ -44,16 +43,29 @@ export default createStore({
     inCart(product){
       return this.cart.some(item => item.id === product.id)
     }
-  },
-  getters:{ //funciona como computed 
-    //dependencia
-    //retorna um valor e recomputa
-    //reduce -> acumulador de valores
+  },//state so pode ser salvo em mutations, é sincrono
+  getters:{ 
     total(state) {
       return state.cart.reduce((total, item) => total += item.price, 0)
     },
+  },//como as computeds
+  actions: { //pode ser assincrono, precisa de intermediação
+    storeUser({ commit }, data){
+      //mudanças foram feitas pois o prof estava usando [(executor, (resolve)=> ...] 
+      //sendo q essa função recebe os parametros 'resolve' e 'reject' dando erro de sintaxe p mim
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          commit('storeUser', data);
+          resolve();
+          console.log('here');
+        }, 3000); //esperar 3 segundos
+      })
+      
+    }
   },
-  actions: {
-  },
-  
+
+   //console.log(context, data); //apresenta dados do usuario
+      //console.log(context.getters.total); //apresenta o total no carrinho
+      //rotina cabulosa ajax
+     
 })

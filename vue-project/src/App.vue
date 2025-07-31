@@ -4,25 +4,25 @@
 <AppProducts />
     <br><br>
         
-  <!-- <pre>: tag usada pra exibit codigo fonte ou txt c formatação original-->
     <pre>
       {{ $store.state.cart }}
     </pre>
 
     <br><br>
+    <br><br>
+    {{ $store.state.user.first_name }} {{ $store.state.user.last_name }} <br>
      <button class="bttm" @click="updateUser()">
     Atualizar perfil
   </button>
+  <br><br>
 
 </template>
 
 
 <script>
 import AppProducts from '@/components/Products/AppProducts.vue';
-//importa componentes de produtos
 export default {
   name: 'App',
-  //declara componente filho
   components:{
     AppProducts,
   },
@@ -38,7 +38,11 @@ export default {
       last_name: 'jackson',
       email: 'percy@jack.com'
     }
-    this.$store.commit('storeUser', newUser)
+    //this.$store.commit('storeUser', newUser)
+    this.$store.dispatch('storeUser', newUser).then(()=> {
+      console.log('terminou com sucesso');
+    })
+
     }
 
   },
