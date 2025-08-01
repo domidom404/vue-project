@@ -1,35 +1,65 @@
 <template>
-  <AppProduct />
-  {{ name }}
-  <img @click="changeName()" src="./assets/logo.svg" alt="vue logo">
-  <HelloWorld msc="welcome to your vue.js app"/>
+  {{ name }} <br><br>
+  <h5>USER</h5>
+  {{ user.first_name }}
+  {{ user.last_name }}
+  <br><br>
+  <h5>ADMIN</h5>
+  {{ admin.first_name }}
+  {{ admin.last_name }}
+  <br><br>
+  
+  <img 
+  class="img"
+  @click="changeName()"
+  alt="vue logo" 
+  src="./assets/logo.svg" >
+  <HelloWorld msg="welcome to your vue.js app"/>
 
 </template>
 
 
 <script>
-import AppProduct from './components/Products/AppProduct.vue';
 import HelloWorld from './components/HelloWorld.vue';
+import { ref, reactive } from 'vue';
+
+
 export default {
   name: 'App',
-  components:{
-    AppProduct,
-    HelloWorld
+  components: {
+   HelloWorld
   },
-  setup() { //substitui fase de criação do componente
-    //nao fica disponivel no template
-    let name = 'thiago' //variavel estatica
+
+  setup() { 
+    //reactive e ref são mt parecidos
+    const user = reactive({ //funciona apenas pra obj, arrays e semelhantes
+      first_name: 'Jay',
+      last_name: 'Snow'
+    })
+
+    const admin = ref({ //consegue usar string e number
+      first_name: 'admin',
+      last_name: 'master'
+    })
+
+    const count = ref(0)
+    console.log(count)
+
+    let name = 'thiago' 
 
     const changeName = () => {
-      //algo 
-      aler('chegou')
+      alert('chegou')
       name = 'Jay Snow'
+      user.first_name = 'Sir'
+      admin.value.first_name = 'Sol' //vue.js usa o '.value' no ref pra criar uma 'casca' de reatividade dentro do js
     }
-
-    //retorna oq ta disponivel no componente
+//foi recomendado usar sempre o ref e não esquecer de usar o '.value'
+    
     return{
+      user,
       name,
-      changeName
+      changeName,
+      admin
     }
 
   },
@@ -45,4 +75,9 @@ export default {
   margin-top: 60px;
 }
 
+.img{
+ width: 200px;
+}
+
+/* esquema de reatividade usando composition API */
 </style>
