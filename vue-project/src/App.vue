@@ -1,52 +1,38 @@
 <template>
-
-{{  $store.getters.total }}
-<AppProducts />
-    <br><br>
-        
-    <pre>
-      {{ $store.state.cart }}
-    </pre>
-
-    <br><br>
-    <br><br>
-    {{ $store.state.user.first_name }} {{ $store.state.user.last_name }} <br>
-     <button class="bttm" @click="updateUser()">
-    Atualizar perfil
-  </button>
-  <br><br>
+  <AppProduct />
+  {{ name }}
+  <img @click="changeName()" src="./assets/logo.svg" alt="vue logo">
+  <HelloWorld msc="welcome to your vue.js app"/>
 
 </template>
 
 
 <script>
-import AppProducts from '@/components/Products/AppProducts.vue';
+import AppProduct from './components/Products/AppProduct.vue';
+import HelloWorld from './components/HelloWorld.vue';
 export default {
   name: 'App',
   components:{
-    AppProducts,
+    AppProduct,
+    HelloWorld
   },
-  data(){
+  setup() { //substitui fase de criação do componente
+    //nao fica disponivel no template
+    let name = 'thiago' //variavel estatica
+
+    const changeName = () => {
+      //algo 
+      aler('chegou')
+      name = 'Jay Snow'
+    }
+
+    //retorna oq ta disponivel no componente
     return{
-    }
-  },
-
-  methods:{
-    updateUser(){
-    const newUser = {
-      first_name:'percy',
-      last_name: 'jackson',
-      email: 'percy@jack.com'
-    }
-    //this.$store.commit('storeUser', newUser)
-    this.$store.dispatch('storeUser', newUser).then(()=> {
-      console.log('terminou com sucesso');
-    })
-
+      name,
+      changeName
     }
 
   },
-  
 }
 </script>
 
