@@ -1,68 +1,46 @@
 <template>
-  {{ name }} <br><br>
   <h5>USER</h5>
   {{ user.first_name }}
   {{ user.last_name }}
   <br><br>
-  <h5>ADMIN</h5>
-  {{ admin.first_name }}
-  {{ admin.last_name }}
+  <h6>FULLNAME</h6>
+  {{ fullName }}
   <br><br>
-  
-  <img 
-  class="img"
-  @click="changeName()"
-  alt="vue logo" 
-  src="./assets/logo.svg" >
-  <HelloWorld msg="welcome to your vue.js app"/>
-
+<!--em template n precisa usar o '.value' p ref-->
+  <button @click="user.first_name = 'Sol'">Atualizar</button>
 </template>
 
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import { ref, reactive } from 'vue';
-
+import { computed, ref, watch } from 'vue';
+//tudo é separado em componentes e vc importa oq realmente precisa
 
 export default {
   name: 'App',
-  components: {
-   HelloWorld
-  },
 
   setup() { 
-    //reactive e ref são mt parecidos
-    const user = reactive({ //funciona apenas pra obj, arrays e semelhantes
+    const user = ref({ 
       first_name: 'Jay',
       last_name: 'Snow'
     })
 
-    const admin = ref({ //consegue usar string e number
-      first_name: 'admin',
-      last_name: 'master'
+    const fullName = computed(() => {
+      return `${user.value.first_name} ${user.value.last_name}`
+    })
+//quando o usuario for alterado
+//primeiro parametro do watch e sua propriedade reativa, no caso foi usado pra observar apenas um valor do objeto
+    watch( () => user.value.first_name, () => { 
+      console.log('viu que o user mudou')
+    }, {
+      //deep: true -> p estar observando um obj inteiro
     })
 
-    const count = ref(0)
-    console.log(count)
-
-    let name = 'thiago' 
-
-    const changeName = () => {
-      alert('chegou')
-      name = 'Jay Snow'
-      user.first_name = 'Sir'
-      admin.value.first_name = 'Sol' //vue.js usa o '.value' no ref pra criar uma 'casca' de reatividade dentro do js
-    }
-//foi recomendado usar sempre o ref e não esquecer de usar o '.value'
-    
     return{
       user,
-      name,
-      changeName,
-      admin
+      fullName
     }
 
-  },
+  }
 }
 </script>
 
