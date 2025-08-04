@@ -1,4 +1,9 @@
 <template>
+  <AppHook v-if="showAppHook"/>
+  <button @click= "showAppHook = !showAppHook" >
+    Toggle <!--botao faz o Hook sumir e aparecer, montando, desmontando e assim por diante-->
+  </button>
+
   <h5>USER</h5>
   {{ user.first_name }}
   {{ user.last_name }}
@@ -6,17 +11,19 @@
   <h6>FULLNAME</h6>
   {{ fullName }}
   <br><br>
-<!--em template n precisa usar o '.value' p ref-->
   <button @click="user.first_name = 'Sol'">Atualizar</button>
 </template>
 
 
 <script>
 import { computed, ref, watch } from 'vue';
-//tudo é separado em componentes e vc importa oq realmente precisa
+import AppHook from './components/AppHook.vue';
 
 export default {
   name: 'App',
+  components: {
+    AppHook
+  },
 
   setup() { 
     const user = ref({ 
@@ -24,20 +31,20 @@ export default {
       last_name: 'Snow'
     })
 
+    const showAppHook = ref(true)
+
     const fullName = computed(() => {
       return `${user.value.first_name} ${user.value.last_name}`
     })
-//quando o usuario for alterado
-//primeiro parametro do watch e sua propriedade reativa, no caso foi usado pra observar apenas um valor do objeto
+
     watch( () => user.value.first_name, () => { 
       console.log('viu que o user mudou')
-    }, {
-      //deep: true -> p estar observando um obj inteiro
-    })
+    }, )
 
     return{
       user,
-      fullName
+      fullName,
+      showAppHook
     }
 
   }
